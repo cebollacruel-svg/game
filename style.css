@@ -1,0 +1,236 @@
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  background: #f4f7f6;
+  color: #333;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* --- Screen Management --- */
+.screen {
+  width: 100%;
+  max-width: 800px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+  padding: 30px 40px;
+  display: none; /* All screens are hidden by default */
+}
+
+.screen.active {
+  display: block; /* The active screen is shown */
+}
+
+h1, h2 {
+  color: #005a7c;
+  text-align: center;
+  margin-top: 0;
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.6;
+}
+
+/* --- Buttons --- */
+.btn {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: white;
+  background: #008cba;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 20px;
+}
+.btn:hover {
+  background: #005a7c;
+}
+
+/* --- Start Screen & Instructions --- */
+.instructions {
+  background: #f9f9f9;
+  border: 1px dashed #ccc;
+  border-radius: 8px;
+  padding: 15px 20px;
+  margin: 20px 0;
+}
+.instructions.centered {
+  text-align: center;
+  border-style: solid;
+  border-color: #008cba;
+  color: #005a7c;
+}
+.instructions ol {
+  padding-left: 20px;
+}
+.instructions li {
+  margin-bottom: 10px;
+  font-size: 1.05em;
+}
+
+[id^="start-screen"] img {
+  width: 100%;
+  border-radius: 8px;
+  margin: 10px 0;
+}
+
+/* --- Vocab Screen --- */
+#vocab-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin: 20px 0;
+}
+.vocab-card {
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.vocab-card:hover {
+  border-color: #008cba;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.vocab-word {
+  font-weight: bold;
+  font-size: 1.1em;
+  color: #005a7c;
+}
+.vocab-context {
+  font-style: italic;
+  font-size: 0.95em;
+  color: #555;
+  margin: 5px 0;
+}
+.vocab-definition {
+  font-size: 0.9em;
+  background: #f0f8ff;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+  display: none; /* Hidden by default */
+}
+.vocab-card.flipped .vocab-definition {
+  display: block; /* Shown when card is 'flipped' */
+}
+
+/* --- Game Screen --- */
+#scenario-content {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  margin: 20px 0;
+}
+#scenario-image {
+  flex: 0 0 150px; /* 150px wide, no grow, no shrink */
+}
+#scenario-image img {
+  width: 100%;
+  border-radius: 8px;
+}
+#scenario-text {
+  flex: 1;
+  font-size: 1.2em;
+  font-style: italic;
+  line-height: 1.7;
+  color: #333;
+  background: #f9f9f9;
+  border-left: 5px solid #008cba;
+  padding: 15px 20px;
+  margin: 0;
+}
+#scenario-text strong {
+  font-style: normal;
+  color: #005a7c;
+}
+
+#options-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin: 20px 0;
+}
+.option-btn {
+  padding: 15px;
+  font-size: 1.1em;
+  font-weight: bold;
+  color: #005a7c;
+  background: #f0f8ff;
+  border: 2px solid #008cba;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.option-btn:hover {
+  background: #e0f0ff;
+  transform: translateY(-2px);
+}
+.option-btn:disabled {
+  background: #eee;
+  color: #999;
+  border-color: #ccc;
+  cursor: not-allowed;
+}
+
+#feedback-box {
+  padding: 20px;
+  border-radius: 8px;
+  font-size: 1.05em;
+  line-height: 1.6;
+  display: none; /* Hidden by default */
+  margin-top: 20px;
+}
+#feedback-box.correct {
+  background: #dff0d8;
+  border: 1px solid #c8e5bc;
+  color: #3c763d;
+  display: block;
+}
+#feedback-box.incorrect {
+  background: #f2dede;
+  border: 1px solid #ebcccc;
+  color: #a94442;
+  display: block;
+}
+#feedback-box strong { font-size: 1.1em; }
+#feedback-box p { margin: 10px 0 0 0; }
+
+#next-btn {
+  display: none; /* Hidden until answer is checked */
+  background: #5cb85c;
+}
+#next-btn:hover {
+  background: #4cae4c;
+}
+
+/* --- Final Screen --- */
+#final-screen p {
+  font-size: 1.2em;
+  text-align: center;
+}
+#final-screen .instructions {
+  text-align: center;
+  padding: 30px;
+}
+#final-screen .instructions p {
+  font-size: 1.4em;
+  font-weight: bold;
+  color: #005a7c;
+  margin: 0;
+}
+#restart-btn {
+  background: #f0ad4e;
+}
+#restart-btn:hover {
+  background: #ec971f;
+}
