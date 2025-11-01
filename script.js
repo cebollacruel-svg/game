@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   // --- Vocabulary Data ---
-  // Sourced from the provided PDF
   const vocabList = [
     { word: "adolescent", context: "To an adolescent, nothing is more embarrassing than a parent.", definition: "A young teenager (age 13-16)" },
     { word: "upheaval", context: "Adolescence represents an inner emotional upheaval.", definition: "A period of great conflict and change" },
@@ -15,14 +14,13 @@ document.addEventListener('DOMContentLoaded', () => {
     { word: "ego identity", context: "The development of ego identity.", definition: "The conscious sense of self that we develop through social interaction" },
     { word: "self-absorbed", context: "Kids going through this are very self-absorbed.", definition: "Completely focused on one's self; worried about being socially accepted" },
     { word: "maturation", context: "This is the time of physical maturation.", definition: "The process of becoming an adult" },
-    { word:A "moratorium", context: "During this moratorium the not-yet-adult is allowed to rebel.", definition: "A suspension of action or responsibility" },
+    { word: "moratorium", context: "During this moratorium the not-yet-adult is allowed to rebel.", definition: "A suspension of action or responsibility" },
     { word: "rebel", context: "The not-yet-adult is allowed to rebel.", definition: "To act against authority or established ways" },
     { word: "settle down", context: "You know how to settle down.", definition: "Get a job, buy a house, get married, etc." },
     { word: "receptive", context: "Much more receptive to new ideas.", definition: "Open; willing to accept new ideas" }
   ];
 
   // --- Game Scenario Data ---
-  // NOW UPDATED WITH REAL IMAGE URLS
   const gameData = [
     {
       level: 1,
@@ -68,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- Get DOM Elements ---
   const screens = document.querySelectorAll('.screen');
-  const startBtn = document.getElementById('start-btn');
+  const startBtn = document.getElementById('start-btn'); // CRITICAL: This must match the HTML ID
   const vocabContainer = document.getElementById('vocab-container');
   const startGameBtn = document.getElementById('start-game-btn');
   const gameContainer = document.getElementById('game-container');
@@ -120,10 +118,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
     levelTitle.textContent = `Profile ${level + 1} of ${gameData.length}`;
     
-    // --- THIS IS THE UPDATED LINE ---
-    // It now uses the real image URL directly
+    // Uses the real image URL
     scenarioImage.innerHTML = `<img src="${data.imageTag}" alt="Scenario Image">`;
-    // --- END OF UPDATE ---
     
     scenarioText.innerHTML = `<p>${data.profile}</p>`;
     
@@ -197,7 +193,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --- Event Listeners ---
+  // CRITICAL: This listener links the start button to the showScreen function
   startBtn.addEventListener('click', () => showScreen('vocab-screen'));
+  
   startGameBtn.addEventListener('click', () => {
     loadLevel(0);
     showScreen('game-container');
